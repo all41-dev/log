@@ -5,14 +5,14 @@ import { LogDb } from './log-db';
 import { LogEntry } from './models/log-entry';
 import { Meta } from './models/meta';
 
-export interface IDbTransportOptions extends Transport.TransportStreamOptions {
+export interface IDbLogTransportOptions extends Transport.TransportStreamOptions {
   db: IDbOptions<LogDb>;
 }
 
-export class DbTransportInstance extends Transport {
+export class DbLogTransportInstance extends Transport {
   db: Db<any>;
   dbInit: Promise<void>;
-  constructor(options: IDbTransportOptions) {
+  constructor(options: IDbLogTransportOptions) {
     super(options);
     this.db = new LogDb(options.db);
     this.dbInit = this.db.init();
