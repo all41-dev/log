@@ -17,6 +17,9 @@ export class LogEntry extends Model<LogEntry> {
   @Column(DataType.STRING(500))
   public message!: string;
 
+  @Column(DataType.DATE)
+  public createdAt!: Date;
+
   @AllowNull
   @Column(DataType.TEXT)
   public callStack?: string;

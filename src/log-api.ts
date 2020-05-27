@@ -12,8 +12,8 @@ export class LogApi extends Api<LogApi> {
 
   public init(): Router {
 
-    this.router.use('/api/log-entry', LogEntryController.create());
-    this.router.use('/api/meta', MetaController.create());
+    this.router.use('/log-entry', LogEntryController.create());
+    this.router.use('/meta', MetaController.create());
 
     return this.router;
   }

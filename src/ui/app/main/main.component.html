@@ -1,0 +1,13 @@
+<div style="padding: 2em;">
+  <div><ift-record-list [layout]="logLayout" [selectedRecords]="selectedLogEntry" style="margin: 1em"></ift-record-list></div>
+  <table *ngIf="selectedLogEntry.length > 0">
+    <thead><tr>
+      <th>field</th>
+      <th>value</th>
+    </tr></thead>
+    <tbody><tr *ngFor="let prop of keys(selectedLogEntry[0])" [hidden]="['metas', 'id', 'createdAt'].includes(prop)">
+      <td>{{prop}}</td>
+      <td>{{selectedLogEntry[0][prop]}}</td>
+    </tr></tbody>
+  </table>
+</div>

@@ -1,0 +1,25 @@
+.bloc {
+  border: var(--main-color) solid 1px;
+}
+
+.bloc>div:nth-child(1) {
+  background-color: var(--main-color);
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+  padding: .2em 0;
+}
+
+.bloc>div:nth-child(2) {
+  padding: .2em;
+}
+
+.bloc>div:nth-child(2)>div>span:nth-child(1) {
+  display: inline-block;
+  width: 40%;
+  font-weight: bolder;
+}
+.bloc>div:nth-child(2)>div>span:nth-child(2) {
+  display: inline-block;
+  width: 60%;
+}

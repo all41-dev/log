@@ -1,10 +1,13 @@
 import { Server } from "@all41-dev/server";
 import { LogApi } from "./log-api";
 import { LogDb } from "./log-db";
+import { LogUi } from "./ui/index";
+import { DbLogTransportInstance } from "./winston-db-transport";
+import os from 'os';
 
 const server = new Server({
   apis: {
-    baseRoute: '/',
+    baseRoute: '/api/',
     type: LogApi,
   },
   dbs: {
@@ -14,6 +17,36 @@ const server = new Server({
     username: 'root',
     hostname: 'localhost',
     password: process.env.PASSWORD || 'PASSWORD not set',
+  },
+  uis: {
+    baseRoute: '/log/',
+    type: LogUi,
+  },
+  statics: {
+    baseRoute: '/assets',
+    ressourcePath: `${__dirname}/assets`,
+    requireAuth: false,
+  },
+  loggerOptions: {
+    level: 'info',
+    // defaultMeta: ['test', 'all41ServerApp', `${os.hostname}Host`],
+    defaultMeta: {
+      hostname: os.hostname,
+      application: 'logger',
+      customer: 'test application',
+    },
+    transports: new DbLogTransportInstance({
+      db: {
+        dbName: 'all41Log',
+        engine: 'mariadb',
+        username: 'root',
+        password: process.env.PASSWORD || 'PASSWORD not set',
+        hostname: 'localhost',
+        type: LogDb,
+      },
+      level: 'debug',
+    })
   }
 });
 server.start();
+Server.logger.error(new Error('Test purpose error.'));
