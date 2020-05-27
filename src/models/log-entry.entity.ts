@@ -1,32 +1,69 @@
 import { Entity } from '@all41-dev/server';
-import { DestroyOptions, FindOptions, Op } from 'sequelize';
+import { DestroyOptions, FindOptions, Op, WhereOptions, WhereAttributeHash } from 'sequelize';
 import { LogEntry } from './log-entry';
+import { Meta } from './meta';
+import winston from 'winston';
+import { IncomingMessage } from 'http';
 
 export class LogEntryEntity extends Entity<LogEntry, LogEntry> {
   public constructor() {
     super(LogEntry);
   }
 
-  public setIncludes(_includePaths: string[]): void {
-    //
+  public setIncludes(includePaths: string |string[] | undefined): void {
+    const includes = includePaths ? typeof includePaths === 'string' ? [includePaths] : includePaths : undefined;
+    if (!includes) return;
+    this._findOptions.include = [];
+
+    if (includes.includes('meta')) {
+      this._findOptions.include.push({model: Meta, as: 'metas', required: true});
+    }
   }
 
   // noinspection JSMethodCanBeStatic
-  public setFilter(filter?: string): void {
-    // const filter: string | undefined = req.query.filter;
-    if (filter !== undefined) {
-      this._findOptions.where = {
-        Email: {
-          [Op.and]: {
-            [Op.like]: `%${filter}%`,
-            [Op.ne]: null,
-          }
-        },
-      };
-    } else { 
-      this._findOptions.where = {
-        Email: {[Op.ne]: null,}
-      }}
+  public setFilter(filter: {
+    meta?: string | string[];
+    from?: Date;
+    until?: Date;
+    qand?: string | string[];
+    qor?: string | string[];
+    level?: string;
+  }): void {
+    const ands: WhereAttributeHash[] = [];
+
+    // to be implemented on retrieved records
+    //     
+    // const metaFilter = metaArr?.map((m) => /* include */ ({[Op.and]: { '$metas.key$': { [Op.eq]: m.split(':')[0] }, '$metas.value$': { [Op.eq]: m.split(':')[1] }}}));
+
+    // if (metaFilter)
+    //   ands.push(...metaFilter);
+
+    if(filter.from)
+      ands.push({ createdAt: { [Op.gte]: filter.from}})
+    if(filter.until)
+      ands.push({ createdAt: { [Op.lte]: filter.until}})
+    if(filter.qand) {
+      const qandArr = typeof filter.qand === 'string' ? [filter.qand] : filter.qand;
+      const qandFilters = qandArr.map((q) => ({ message: { [Op.like]: `%${q}%` } }));
+      ands.push(...qandFilters);
+    }
+    if(filter.qor) {
+      const qorArr = typeof filter.qor === 'string' ? [filter.qor] : filter.qor;
+      const qorFilters = qorArr.map((q) => ({ message: { [Op.like]: `%${q}%` } }));
+      ands.push({[Op.or]: qorFilters});
+    }
+    if (filter.level) {
+      const logger = winston.createLogger();
+      const levels = Object.keys(logger.levels);
+      const filterLevelValue = logger.levels[filter.level];
+      if (filterLevelValue !== undefined) {// if undefined, then is invalid -> to be ignored
+        const validLevels = levels.filter((l) => logger.levels[l] >= filterLevelValue);
+        const lvlFilters = validLevels.map((vl) => ({ levelCode: vl }));
+        ands.push({[Op.or]: lvlFilters});
+      }
+    }
+
+    this._findOptions.where = ands.length === 0 ? {} : { [Op.and]: ands };
   }
 
   // noinspection JSMethodCanBeStatic

@@ -6,20 +6,25 @@ import { MetaEntity } from '../models/meta.entity';
 const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 export class MetaController extends EntityController<MetaEntity> {
-  private static inst: MetaController;
+  protected static _entity: MetaEntity;
   public static create(): Router {
     const router = Router();
+    MetaController._entity = new MetaEntity;
 
-    router.get('/', MetaController.inst.getAll);
-    router.get('/:id', MetaController.inst.getById);
-    router.post('/', MetaController.inst.post);
-
-    MetaController.inst = new MetaController(new MetaEntity);
+    router.get('/', MetaController.getAll);
+    router.get('/:id', MetaController.getById);
+    router.post('/', MetaController.post);
 
     return router;
   }
 
-  public async getById(req: Request, res: Response): Promise<void> {
-    return super.getById(req, res, req.params.id);
+  public static async getAll(req: Request, res: Response): Promise<void> {
+    return EntityController.getAll(req, res, MetaController._entity);
+  }
+  public static async getById(req: Request, res: Response): Promise<void> {
+    return EntityController.getById(req, res, MetaController._entity, req.params.id);
+  }
+  public static async post(req: Request, res: Response): Promise<void> {
+    return EntityController.post(req, res, MetaController._entity);
   }
 }

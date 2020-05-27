@@ -6,20 +6,50 @@ import { LogEntryEntity } from '../models/log-entry.entity';
 const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 export class LogEntryController extends EntityController<LogEntryEntity> {
-  private static inst: LogEntryController;
+  protected static _entity: LogEntryEntity;
   public static create(): Router {
     const router = Router();
+    LogEntryController._entity = new LogEntryEntity;
 
-    router.get('/', LogEntryController.inst.getAll);
-    router.get('/:id', LogEntryController.inst.getById);
-    router.post('/', LogEntryController.inst.post);
-
-    LogEntryController.inst = new LogEntryController(new LogEntryEntity);
+    router.get('/', LogEntryController.getAll);
+    router.get('/:id', LogEntryController.getById);
+    router.post('/', LogEntryController.post);
 
     return router;
   }
 
-  public async getById(req: Request, res: Response): Promise<void> {
-    return super.getById(req, res, req.params.id);
+  public static async getAll(req: Request, res: Response): Promise<void> {
+    const entity = LogEntryController._entity;
+    LogEntryController._entity.setFilter({
+      meta: req.query.meta,
+      from: req.query.from ? new Date(req.query.from) : undefined,
+      until: req.query.until ? new Date(req.query.until) : undefined,
+      qand: req.query.qand,
+      qor: req.query.qor,
+      level: req.query.level,
+    });
+    LogEntryController._entity.setIncludes(req.query.include);
+
+    return LogEntryController._entity?.get()
+      .then((data): void => {
+        const filteredRes = req.query.meta ? data.filter((le) => {
+          const m: string | string[] | undefined = req.query.meta;
+          if (!m) return true;
+          const metaArr = typeof m === 'string' ? [m] : m;
+          return metaArr.every((meta) => le.metas?.find((lem) => `${lem.key}:${lem.value}`.toLowerCase() === meta.toLowerCase()));
+        }) : data;
+        res.json(filteredRes)} )
+      .catch((reason): void => {
+        res.status(500).json(reason);
+        throw new Error(reason);
+      });
+  }
+
+  public static async getById(req: Request, res: Response): Promise<void> {
+    return EntityController.getById(req, res, LogEntryController._entity, req.params.id);
+  }
+
+  public static async post(req: Request, res: Response): Promise<void> {
+    return EntityController.post(req, res, LogEntryController._entity);
   }
 }
