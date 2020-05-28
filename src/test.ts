@@ -46,7 +46,7 @@ const server = new Server({
       },
       level: 'debug',
     })
-  }
+  },
 });
-server.start();
-Server.logger.error(new Error('Test purpose error.'));
+server.start(false, 8082);
+// Server.logger.error(new Error('Test purpose error.'));

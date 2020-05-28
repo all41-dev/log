@@ -64,6 +64,7 @@ export class LogEntryEntity extends Entity<LogEntry, LogEntry> {
     }
 
     this._findOptions.where = ands.length === 0 ? {} : { [Op.and]: ands };
+    this._findOptions.order = [['createdAt', 'DESC']];
   }
 
   // noinspection JSMethodCanBeStatic

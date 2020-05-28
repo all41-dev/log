@@ -20,7 +20,7 @@ export class LogEntryController extends EntityController<LogEntryEntity> {
 
   public static async getAll(req: Request, res: Response): Promise<void> {
     const entity = LogEntryController._entity;
-    LogEntryController._entity.setFilter({
+    entity.setFilter({
       meta: req.query.meta,
       from: req.query.from ? new Date(req.query.from) : undefined,
       until: req.query.until ? new Date(req.query.until) : undefined,
@@ -28,9 +28,9 @@ export class LogEntryController extends EntityController<LogEntryEntity> {
       qor: req.query.qor,
       level: req.query.level,
     });
-    LogEntryController._entity.setIncludes(req.query.include);
+    entity.setIncludes(req.query.include);
 
-    return LogEntryController._entity?.get()
+    return entity?.get()
       .then((data): void => {
         const filteredRes = req.query.meta ? data.filter((le) => {
           const m: string | string[] | undefined = req.query.meta;
