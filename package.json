@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node ./dist/test.js",
     "lint": "eslint src/** --fix",
     "build": "run-p build:*",
     "build:ui": "ng build --base-href /log/ && npm run copy:assets",
