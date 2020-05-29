@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
     primaryKeyProperty: 'id',
     chunkSize: 50,
     selectionType: SelectionType.Single,
-    entityUrl: '/api/log-entry?include=meta',
+    entityUrl: 'api/log-entry?include=meta',
     initRecord: (recs: LogEntry[]) => {
       recs.forEach((rec) => {
         if (!rec.metas) return;

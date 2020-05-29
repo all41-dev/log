@@ -7,7 +7,7 @@ import os from 'os';
 
 const server = new Server({
   apis: {
-    baseRoute: '/api/',
+    baseRoute: '/log/api/',
     type: LogApi,
   },
   dbs: {
