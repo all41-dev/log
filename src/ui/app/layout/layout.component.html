@@ -13,6 +13,7 @@
       <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/exchange">EXCHANGE</a></li>
       <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/key-map">DATA MAPPING</a></li>
       <li><a href="/iam/manage">ACCESS</a></li> -->
+      <li *ngFor="let menuItem of customMenu"><a [href]="menuItem.uri">{{menuItem.label}}</a></li>
     </ul>
   </div>
 </section>

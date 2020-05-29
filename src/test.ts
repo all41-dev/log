@@ -21,6 +21,15 @@ const server = new Server({
   uis: {
     baseRoute: '/log/',
     type: LogUi,
+    config: {
+      customMenu: [{
+        label: 'TEST',
+        uri: '/test/'
+      },{
+        label: 'GOOGLE',
+        uri: 'https://www.google.com',
+      }],
+    }
   },
   statics: {
     baseRoute: '/assets',

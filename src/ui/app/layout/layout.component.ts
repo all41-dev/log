@@ -14,6 +14,11 @@ export class LayoutComponent extends AuthenticationBase {
   @ViewChild('menu') private menu: any;
   @ViewChild('content') private content: any;
 
+  public get customMenu(): { label: string; uri: string }[] {
+    const cm: { label: string; uri: string }[] = this.config.get('customMenu') || [];
+    return cm;
+  }
+
   public get secured(): boolean {
     return this.config.get('authType') !== undefined;
   }
