@@ -7,7 +7,7 @@
       <div style="color: white" *ngIf="authUser">{{authUser}} <button role="button" (click)="logout();login();">logout</button> </div>
     </div>
     <ul>
-      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/">HOME</a></li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/">LOG</a></li>
       <!-- <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/config">CONFIGURATION</a></li>
       <li [class.active]="router.url.startsWith('/module/')"><a routerLink="/module">MODULE</a></li>
       <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/exchange">EXCHANGE</a></li>
