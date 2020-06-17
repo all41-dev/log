@@ -14,12 +14,13 @@
     "lint": "eslint src/** --fix",
     "build": "run-p build:*",
     "build:ui": "ng build --base-href /log/ && npm run copy:assets",
-    "build:app": "tsc && tsc --project src/ui/tsconfig.express.json",
+    "build:app": "tsc && tsc --project src/ui/tsconfig.express.json && npm run copy:scripts",
     "preversion": "run-p test lint build",
     "postversion": "git push && git push --tags && npm publish",
     "ncu:view": "ncu -x typescript,sequelize",
     "ncu:upd": "ncu -x typescript,sequelize -u",
-    "copy:assets": "cp-cli ./src/assets/ ./dist/assets/"
+    "copy:assets": "cp-cli ./src/assets/ ./dist/assets/",
+    "copy:scripts": "cp-cli ./src/models/scripts ./dist/models/scripts/"
   },
   "repository": {
     "type": "git",
