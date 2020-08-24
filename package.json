@@ -48,9 +48,9 @@
     "zone.js": "^0.10.3"
   },
   "devDependencies": {
-    "@all41-dev/db-tools": "^0.0.4",
+    "@all41-dev/db-tools": "^1.0.3",
     "@all41-dev/iam.model": "^1.0.5",
-    "@all41-dev/server": "^1.5.2",
+    "@all41-dev/server": "^1.7.1",
     "@angular-devkit/build-angular": "^0.901.7",
     "@angular/cli": "^9.1.7",
     "@angular/compiler": "^9.1.9",
@@ -80,6 +80,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.4.0",
+    "npm-run-all": "^4.1.5",
     "request": "^2.88.2",
     "sequelize": "5.21.0",
     "sequelize-typescript": "^1.1.0",
