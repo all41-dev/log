@@ -21,14 +21,16 @@ export class DbLogTransportInstance extends Transport {
     if (this.silent) { return next(null, true); }
     await this.dbInit;
 
-    const metas = Object.keys(info)
-      .filter((k) => !['message', 'level'].includes(k))
-      .map((k) => {
-        let value = (info as any)[k];
-        if (typeof value !== 'string') value = `${value}`;
-        const meta = new Meta({ key: k, value } as Partial<Meta>);
-        return meta;
-      });
+    if (!info.meta)
+      info.meta = {};
+
+    const metaKeys = Object.keys(info).filter((k) => !['error', 'hash', 'level', 'timestamp', 'meta', 'body', 'title'].includes(k));
+    const metas = metaKeys.map((k) => {
+      let value = (info as any)[k];
+      if (typeof value !== 'string') value = `${value}`;
+      const meta = new Meta({ key: k, value } as Partial<Meta>);
+      return meta;
+    });
 
     const logEntry = new LogEntry(info instanceof Error ? {
       levelCode: info.level,
