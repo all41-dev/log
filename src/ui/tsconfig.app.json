@@ -1,8 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "target": "ES2015",
     "outDir": "../out-tsc/app",
-    "types": []
+    "types": [],
+    "lib": ["ES2019", "DOM"]
   },
   "exclude": [
     "src/test.ts",
