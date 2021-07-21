@@ -79,10 +79,11 @@ export class MainComponent extends AuthenticationBase {
       dt.setDate(dt.getDate() - 7);
       return dt.toISOString().split('T')[0];
     })()
-    this.toDt = ((): string => {
-      const dt = new Date();
-      return dt.toISOString().split('T')[0];
-    })()
+    this.toDt = undefined;
+    // ((): string => {
+    //   const dt = new Date();
+    //   return dt.toISOString().split('T')[0];
+    // })()
   }
   public keys = (obj: any): string[] => Object.keys(obj);
   public refresh(): void {
