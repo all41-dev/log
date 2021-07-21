@@ -11,7 +11,7 @@ const server = new Server({
     type: LogApi,
   },
   dbs: {
-    dbName: 'all41Log',
+    dbName: process.env.LOG_DB_NAME || 'all41Log',
     engine: 'mariadb',
     type: LogDb,
     username: 'root',
@@ -57,5 +57,5 @@ const server = new Server({
     })
   },
 });
-server.start(false, 8082);
+server.start(8082);
 // Server.logger.error(new Error('Test purpose error.'));

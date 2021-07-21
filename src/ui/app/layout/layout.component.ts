@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavigationEnd, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
-import { AuthenticationBase, Config } from '@all41/ui-components';
+import { AuthenticationBase, Config } from '@all41-dev/ui-components';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({

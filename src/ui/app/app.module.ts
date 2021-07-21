@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes} from '@angular/router';
-import { ComponentsUiModule, Config } from '@all41/ui-components';
+import { ComponentsUiModule, Config } from '@all41-dev/ui-components';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';

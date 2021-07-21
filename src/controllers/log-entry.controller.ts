@@ -22,7 +22,11 @@ export class LogEntryController extends EntityController<LogEntryEntity> {
     const entity = LogEntryController._entity;
     entity.setFilter({
       meta: req.query.meta,
-      from: req.query.from ? new Date(req.query.from) : undefined,
+      from: req.query.from ? new Date(req.query.from) : ((): Date => {
+        const dt = new Date();
+        dt.setDate(dt.getDate() - 7);
+        return dt;
+      })(),
       until: req.query.until ? new Date(req.query.until) : undefined,
       qand: req.query.qand,
       qor: req.query.qor,

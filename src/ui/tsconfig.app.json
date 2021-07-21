@@ -4,7 +4,11 @@
     "target": "ES2015",
     "outDir": "../out-tsc/app",
     "types": [],
-    "lib": ["ES2019", "DOM"]
+    "lib": ["ES2019", "DOM"],
+    "typeRoots": [
+      "types",
+      "./node_modules/@types"
+    ],
   },
   "exclude": [
     "src/test.ts",

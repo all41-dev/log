@@ -1,13 +1,26 @@
 <div style="padding: 2em;">
-  <div><ift-record-list [layout]="logLayout" [selectedRecords]="selectedLogEntry" style="margin: 1em"></ift-record-list></div>
-  <table *ngIf="selectedLogEntry.length > 0">
+  <label>from: <input type="date" [(ngModel)]="fromDt"></label>
+  <label style="padding-left: 1em;">to: <input type="date" [(ngModel)]="toDt"></label>
+  <all41-tabulator [(tabulator)]="logEntries" [extendedOptions]="logEntriesExtOptions" [tabulatorOptions]="logEntriesOptions" >
+    </all41-tabulator>
+
+  <table class="table table-striped" *ngIf="selectedLogEntry">
     <thead><tr>
       <th>field</th>
       <th>value</th>
     </tr></thead>
-    <tbody><tr *ngFor="let prop of keys(selectedLogEntry[0])" [hidden]="['metas', 'id', 'createdAt'].includes(prop)">
-      <td>{{prop}}</td>
-      <td>{{selectedLogEntry[0][prop]}}</td>
-    </tr></tbody>
+    <tbody>
+      <tr *ngFor="let prop of keys(selectedLogEntry)" [hidden]="['metas', 'id', 'createdAt', 'updatedAt'].includes(prop)">
+        <td>{{prop}}</td>
+        <td>{{selectedLogEntry[prop]}}</td>
+      </tr>
+      <tr *ngFor="let meta of selectedLogEntry.metas" [hidden]="['message'].includes(meta.key)">
+        <td>{{meta.key}}</td>
+        <!-- <td *ngIf="meta.key !== 'stack'">{{meta.value}}</td> -->
+        <!-- <td *ngIf="meta.key === 'stack'"><pre>{{meta.value}}</pre></td> -->
+        <td><pre>{{meta.value}}</pre></td>
+      </tr>
+    </tbody>    
   </table>
+  <!-- {{selectedLogEntry|json}} -->
 </div>
