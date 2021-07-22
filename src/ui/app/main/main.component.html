@@ -1,6 +1,10 @@
-<div style="padding: 2em;">
-  <label>from: <input type="date" [(ngModel)]="fromDt"></label>
-  <label style="padding-left: 1em;">to: <input type="date" [(ngModel)]="toDt"></label>
+<div style="padding: 0 1em 1em 1em;">
+  <h1>LOG</h1>
+  <div style="padding: .5em">
+    <label>from: <input type="date" [(ngModel)]="fromDt"></label>
+    <label style="padding-left: 1em;">to: <input type="date" [(ngModel)]="toDt"></label>
+    <button style="margin-left:1em" class="btn btn-light" (click)="refresh()">refresh</button>
+  </div>
   <all41-tabulator [(tabulator)]="logEntries" [extendedOptions]="logEntriesExtOptions" [tabulatorOptions]="logEntriesOptions" >
     </all41-tabulator>
 

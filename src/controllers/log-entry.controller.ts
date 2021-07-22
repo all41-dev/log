@@ -24,7 +24,7 @@ export class LogEntryController extends EntityController<LogEntryEntity> {
       meta: req.query.meta,
       from: req.query.from ? new Date(req.query.from) : ((): Date => {
         const dt = new Date();
-        dt.setDate(dt.getDate() - 7);
+        dt.setDate(dt.getDate() - 1);
         return dt;
       })(),
       until: req.query.until ? new Date(req.query.until) : undefined,

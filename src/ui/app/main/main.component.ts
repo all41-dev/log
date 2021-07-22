@@ -76,7 +76,7 @@ export class MainComponent extends AuthenticationBase {
     }
     this.fromDt = ((): string => {
       const dt = new Date();
-      dt.setDate(dt.getDate() - 7);
+      dt.setDate(dt.getDate() - 1);
       return dt.toISOString().split('T')[0];
     })()
     this.toDt = undefined;
