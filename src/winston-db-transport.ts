@@ -24,7 +24,7 @@ export class DbLogTransportInstance extends Transport {
     if (!info.meta)
       info.meta = {};
 
-    const metaKeys = Object.keys(info).filter((k) => !['hash', 'level', 'timestamp', 'meta', 'body', 'title'].includes(k));
+    const metaKeys = Object.keys(info).filter((k) => !['hash', 'level', 'timestamp', 'body', 'title'].includes(k));
     const metas = metaKeys.map((k) => {
       let value = (info as any)[k];
       if (typeof value === 'object') value = JSON.stringify(value, null, 2);
