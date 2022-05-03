@@ -1,25 +1,21 @@
-import { EntityController } from '@all41-dev/server';
+import { RequestController } from '@all41-dev/server';
 import { Request, Response, Router } from 'express';
 import { LogEntryEntity } from '../models/log-entry.entity';
 
-// tslint:disable-next-line: no-var-requires
-const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-
-export class LogEntryController extends EntityController<LogEntryEntity> {
-  protected static _entity: LogEntryEntity;
+export class LogEntryController extends RequestController<LogEntryEntity> {
   public static create(): Router {
     const router = Router();
-    LogEntryController._entity = new LogEntryEntity;
+    const inst = new LogEntryController(LogEntryEntity);
 
-    router.get('/', LogEntryController.getAll);
-    router.get('/:id', LogEntryController.getById);
-    router.post('/', LogEntryController.post);
+    router.get('/', inst.getAll);
+    router.get('/:id', inst.getById);
+    router.post('/', inst.post);
 
     return router;
   }
 
-  public static async getAll(req: Request, res: Response): Promise<void> {
-    const entity = LogEntryController._entity;
+  public async getAll(req: Request, res: Response): Promise<void> {
+    const entity = this.getNewRequest();
     entity.setFilter({
       meta: req.query.meta,
       from: req.query.from ? new Date(req.query.from) : ((): Date => {
@@ -49,11 +45,11 @@ export class LogEntryController extends EntityController<LogEntryEntity> {
       });
   }
 
-  public static async getById(req: Request, res: Response): Promise<void> {
-    return EntityController.getById(req, res, LogEntryController._entity, req.params.id);
+  public async getById(req: Request, res: Response): Promise<void> {
+    return super.getById(req, res, this.getNewRequest(), req.params.id);
   }
 
-  public static async post(req: Request, res: Response): Promise<void> {
-    return EntityController.post(req, res, LogEntryController._entity);
+  public async post(req: Request, res: Response): Promise<void> {
+    return super.post(req, res, this.getNewRequest());
   }
 }

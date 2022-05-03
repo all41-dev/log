@@ -1,11 +1,11 @@
-import { Entity } from '@all41-dev/server';
+import { EntityRequest } from '@all41-dev/server';
 import { DestroyOptions, FindOptions, Op, WhereOptions, WhereAttributeHash } from 'sequelize';
 import { LogEntry } from './log-entry';
 import { Meta } from './meta';
 import winston from 'winston';
 import { IncomingMessage } from 'http';
 
-export class LogEntryEntity extends Entity<LogEntry, LogEntry> {
+export class LogEntryEntity extends EntityRequest<LogEntry, LogEntry> {
   public constructor() {
     super(LogEntry);
   }

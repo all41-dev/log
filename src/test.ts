@@ -56,6 +56,7 @@ const server = new Server({
       level: 'debug',
     })
   },
+  httpPort: 8082,
 });
-server.start(8082);
+server.start();
 // Server.logger.error(new Error('Test purpose error.'));

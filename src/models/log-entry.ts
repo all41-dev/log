@@ -24,7 +24,7 @@ export class LogEntry extends Model {
   @AllowNull
   @Column(DataType.TEXT)
   public callStack?: string;
-  @HasMany((): typeof Model => Meta)
+  @HasMany((): typeof Meta => Meta)
   public metas?: MetaClient[];
 
 }

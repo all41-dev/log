@@ -1,30 +1,26 @@
-import { EntityController } from '@all41-dev/server';
+import { RequestController } from '@all41-dev/server';
 import { Request, Response, Router } from 'express';
 import { MetaEntity } from '../models/meta.entity';
 
-// tslint:disable-next-line: no-var-requires
-const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-
-export class MetaController extends EntityController<MetaEntity> {
-  protected static _entity: MetaEntity;
+export class MetaController extends RequestController<MetaEntity> {
   public static create(): Router {
     const router = Router();
-    MetaController._entity = new MetaEntity;
+    const inst = new MetaController(MetaEntity);
 
-    router.get('/', MetaController.getAll);
-    router.get('/:id', MetaController.getById);
-    router.post('/', MetaController.post);
+    router.get('/', inst.getAll);
+    router.get('/:id', inst.getById);
+    router.post('/', inst.post);
 
     return router;
   }
 
-  public static async getAll(req: Request, res: Response): Promise<void> {
-    return EntityController.getAll(req, res, MetaController._entity);
+  public async getAll(req: Request, res: Response): Promise<void> {
+    return super.getAll(req, res, this.getNewRequest());
   }
-  public static async getById(req: Request, res: Response): Promise<void> {
-    return EntityController.getById(req, res, MetaController._entity, req.params.id);
+  public async getById(req: Request, res: Response): Promise<void> {
+    return super.getById(req, res, this.getNewRequest(), req.params.id);
   }
-  public static async post(req: Request, res: Response): Promise<void> {
-    return EntityController.post(req, res, MetaController._entity);
+  public async post(req: Request, res: Response): Promise<void> {
+    return super.post(req, res, this.getNewRequest());
   }
 }

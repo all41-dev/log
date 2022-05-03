@@ -5,7 +5,7 @@ import { LogEntry, LogEntryClient } from './log-entry';
 export class Meta extends Model {
   @PrimaryKey
   @AllowNull(false)
-  @ForeignKey((): typeof Model => LogEntry)
+  @ForeignKey((): typeof LogEntry => LogEntry)
   @Column(DataType.UUID)
   public logEntryUuid?: string;
 
@@ -20,7 +20,7 @@ export class Meta extends Model {
   @Column(DataType.STRING)
   public value!: string;
 
-  @BelongsTo((): typeof Model => LogEntry)
+  @BelongsTo((): typeof LogEntry => LogEntry)
   public logEntry?: LogEntry;
 
 }

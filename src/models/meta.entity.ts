@@ -1,8 +1,8 @@
-import { Entity } from '@all41-dev/server';
+import { EntityRequest } from '@all41-dev/server';
 import { DestroyOptions, FindOptions, Op } from 'sequelize';
 import { Meta } from './meta';
 
-export class MetaEntity extends Entity<Meta, Meta> {
+export class MetaEntity extends EntityRequest<Meta, Meta> {
   public constructor() {
     super(Meta);
   }
@@ -21,11 +21,11 @@ export class MetaEntity extends Entity<Meta, Meta> {
             [Op.like]: `%${filter}%`,
             [Op.ne]: null,
           }
-        },
+        } as any,
       };
     } else { 
       this._findOptions.where = {
-        Email: {[Op.ne]: null,}
+        Email: {[Op.ne]: null,} as any
       }}
   }
 
@@ -51,7 +51,7 @@ export class MetaEntity extends Entity<Meta, Meta> {
   }
 
   public async preDelete(id: string): Promise<number> {
-    const options: DestroyOptions = { where: { id: id } };
+    const options: DestroyOptions<any> = { where: { id: id } };
     return Meta.destroy(options);
   }
   public async getByPk(pk: any): Promise<Meta|null> {
@@ -69,7 +69,7 @@ export class MetaEntity extends Entity<Meta, Meta> {
   protected async dbFindAll(options: FindOptions): Promise<Meta[]> {
     return Meta.findAll(options);
   }
-  protected async dbDestroy(options: DestroyOptions): Promise<number> {
+  protected async dbDestroy(options: DestroyOptions<any>): Promise<number> {
     return Meta.destroy(options);
   }
 }
