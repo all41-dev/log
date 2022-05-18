@@ -4,6 +4,7 @@ import { Db, IDbOptions } from '@all41-dev/db-tools';
 import { LogDb } from './log-db';
 import { LogEntry } from './models/log-entry';
 import { Meta } from './models/meta';
+import util from 'util';
 
 export interface IDbLogTransportOptions extends Transport.TransportStreamOptions {
   db: IDbOptions<LogDb>;
@@ -27,7 +28,11 @@ export class DbLogTransportInstance extends Transport {
     const metaKeys = Object.keys(info).filter((k) => !['hash', 'level', 'timestamp', 'body', 'title'].includes(k));
     const metas = metaKeys.map((k) => {
       let value = (info as any)[k];
-      if (typeof value === 'object') value = JSON.stringify(value, null, 2);
+      if (typeof value === 'object') {
+        // use util instead of JSON.stringify to handle possible circular reference here
+        // see https://stackoverflow.com/a/18354289/1073588
+        value = util.inspect(value);
+      }
       else if (typeof value !== 'string') value = `${value}`;
       const meta = new Meta({ key: k, value } as Partial<Meta>);
       return meta;
