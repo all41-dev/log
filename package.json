@@ -43,7 +43,7 @@
   "devDependencies": {
     "@all41-dev/db-tools": "^1.2.0",
     "@all41-dev/server": "^2.5.0",
-    "@angular-devkit/build-angular": "^0.1102.18",
+    "@angular-devkit/build-angular": "^15.2.2",
     "@angular/cli": "^11.2.0",
     "@angular/compiler": "^11.2.0",
     "@angular/compiler-cli": "^11.2.0",
