@@ -11,7 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "start": "node ./dist/test.js",
-    "lint": "eslint src/** --fix",
+    "lint": "eslint src/ --fix",
     "build": "run-p build:*",
     "build-disabled:ui": "ng build --base-href /log/ && npm run copy:assets",
     "build:app": "tsc && tsc --project src/ui/tsconfig.express.json && npm run copy:scripts",
