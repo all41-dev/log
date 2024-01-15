@@ -1,6 +1,6 @@
 {
   "name": "@all41-dev/log",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Logging services (Api, Db, Ui)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
