@@ -17,23 +17,23 @@ export class LogEntryController extends RequestController<LogEntryEntity> {
   public async getAll(req: Request, res: Response): Promise<void> {
     const entity = this.getNewRequest();
     entity.setFilter({
-      meta: req.query.meta,
-      from: req.query.from ? new Date(req.query.from) : ((): Date => {
+      meta: req.query.meta?.toString(),
+      from: req.query.from ? new Date(req.query.from.toString()) : ((): Date => {
         const dt = new Date();
         dt.setDate(dt.getDate() - 1);
         return dt;
       })(),
-      until: req.query.until ? new Date(req.query.until) : undefined,
-      qand: req.query.qand,
-      qor: req.query.qor,
-      level: req.query.level,
+      until: req.query.until ? new Date(req.query.until.toString()) : undefined,
+      qand: req.query.qand?.toString(),
+      qor: req.query.qor?.toString(),
+      level: req.query.level?.toString(),
     });
-    entity.setIncludes(req.query.include);
+    entity.setIncludes(req.query.include?.toString());
 
     return entity?.get()
       .then((data): void => {
         const filteredRes = req.query.meta ? data.filter((le) => {
-          const m: string | string[] | undefined = req.query.meta;
+          const m: string | string[] | undefined = req.query.meta?.toString();
           if (!m) return true;
           const metaArr = typeof m === 'string' ? [m] : m;
           return metaArr.every((meta) => le.metas?.find((lem) => `${lem.key}:${lem.value}`.toLowerCase() === meta.toLowerCase()));
