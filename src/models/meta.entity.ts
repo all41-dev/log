@@ -2,9 +2,9 @@ import { EntityRequest } from '@all41-dev/server';
 import { DestroyOptions, FindOptions, Op } from 'sequelize';
 import { Meta } from './meta';
 
-export class MetaEntity extends EntityRequest<Meta, Meta> {
+export class MetaEntity extends EntityRequest<Meta, any> {
   public constructor() {
-    super(Meta);
+    super(Meta, Meta);
   }
 
   public setIncludes(_includePaths: string[]): void {

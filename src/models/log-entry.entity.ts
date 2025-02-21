@@ -5,9 +5,9 @@ import { Meta } from './meta';
 import winston from 'winston';
 import { IncomingMessage } from 'http';
 
-export class LogEntryEntity extends EntityRequest<LogEntry, LogEntry> {
+export class LogEntryEntity extends EntityRequest<LogEntry, any> {
   public constructor() {
-    super(LogEntry);
+    super(LogEntry, LogEntry);
   }
 
   public setIncludes(includePaths: string |string[] | undefined): void {

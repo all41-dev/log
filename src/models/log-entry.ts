@@ -6,7 +6,7 @@ export class LogEntry extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column(DataType.UUID)
-  public id?: string;
+  declare public id?: string;
 
   @AllowNull(false)
   // @Column(DataType.STRING(50))
@@ -19,7 +19,7 @@ export class LogEntry extends Model {
   public message!: string;
 
   @Column(DataType.DATE)
-  public createdAt!: Date;
+  declare public createdAt: Date;
 
   @AllowNull
   @Column(DataType.TEXT)

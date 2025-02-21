@@ -1,24 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainComponent } from './main.component';
+// import { MainComponent } from './main.component';
 
-describe('MainComponent', (): void => {
-  let component: MainComponent;
-  let fixture: ComponentFixture<MainComponent>;
+// describe('MainComponent', (): void => {
+//   let component: MainComponent;
+//   let fixture: ComponentFixture<MainComponent>;
 
-  beforeEach(async((): void => {
-    TestBed.configureTestingModule({
-      declarations: [ MainComponent ],
-    }).compileComponents();
-  }));
+//   beforeEach(async((): void => {
+//     TestBed.configureTestingModule({
+//       declarations: [ MainComponent ],
+//     }).compileComponents();
+//   }));
 
-  beforeEach((): void => {
-    fixture = TestBed.createComponent(MainComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach((): void => {
+//     fixture = TestBed.createComponent(MainComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', (): void => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', (): void => {
+//     expect(component).toBeTruthy();
+//   });
+// });

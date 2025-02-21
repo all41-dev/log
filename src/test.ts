@@ -1,15 +1,15 @@
 import { Server } from "@all41-dev/server";
-import { LogApi } from "./log-api";
+// import { LogApi } from "./log-api";
 import { LogDb } from "./log-db";
 import { LogUi } from "./ui/index";
 import { DbLogTransportInstance } from "./winston-db-transport";
 import os from 'os';
 
 const server = new Server({
-  apis: {
-    baseRoute: '/log/api/',
-    type: LogApi,
-  },
+  // apis: {
+  //   baseRoute: '/log/api/',
+  //   type: LogApi,
+  // },
   dbs: {
     dbName: process.env.LOG_DB_NAME || 'all41Log',
     engine: 'mariadb',
