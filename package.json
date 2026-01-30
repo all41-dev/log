@@ -31,7 +31,9 @@
   "license": "ISC",
   "homepage": "https://github.com/all41-dev/log.api",
   "dependencies": {
+    "@stylistic/eslint-plugin": "^5.7.1",
     "rxjs": "^7.8.2",
+    "typescript-eslint": "^8.54.0",
     "zone.js": "^0.16.0"
   },
   "devDependencies": {

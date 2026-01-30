@@ -1,9 +1,8 @@
 import { EntityRequest } from '@all41-dev/server';
-import { DestroyOptions, FindOptions, Op, WhereOptions, WhereAttributeHash } from 'sequelize';
+import { DestroyOptions, FindOptions, Op, WhereAttributeHash } from 'sequelize';
 import { LogEntry } from './log-entry';
 import { Meta } from './meta';
 import winston from 'winston';
-import { IncomingMessage } from 'http';
 
 export class LogEntryEntity extends EntityRequest<LogEntry, any> {
   public constructor() {
@@ -32,7 +31,7 @@ export class LogEntryEntity extends EntityRequest<LogEntry, any> {
     const ands: WhereAttributeHash[] = [];
 
     // to be implemented on retrieved records
-    //     
+    //
     // const metaFilter = metaArr?.map((m) => /* include */ ({[Op.and]: { '$metas.key$': { [Op.eq]: m.split(':')[0] }, '$metas.value$': { [Op.eq]: m.split(':')[1] }}}));
 
     // if (metaFilter)

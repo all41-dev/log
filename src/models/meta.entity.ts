@@ -8,7 +8,8 @@ export class MetaEntity extends EntityRequest<Meta, any> {
   }
 
   public setIncludes(_includePaths: string[]): void {
-    //
+    throw new Error(`setIncludes not implemented: ${_includePaths}`)
+    // _includePaths
   }
 
   // noinspection JSMethodCanBeStatic
@@ -23,7 +24,7 @@ export class MetaEntity extends EntityRequest<Meta, any> {
           }
         } as any,
       };
-    } else { 
+    } else {
       this._findOptions.where = {
         Email: {[Op.ne]: null,} as any
       }}
