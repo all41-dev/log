@@ -1,36 +1,10 @@
 import { Server } from "@all41-dev/server";
 // import { LogApi } from "./log-api";
 import { LogDb } from "./log-db";
-import { LogUi } from "./ui/index";
 import { DbLogTransportInstance } from "./winston-db-transport";
 import os from 'os';
 
 const server = new Server({
-  // apis: {
-  //   baseRoute: '/log/api/',
-  //   type: LogApi,
-  // },
-  dbs: {
-    dbName: process.env.LOG_DB_NAME || 'all41Log',
-    engine: 'mariadb',
-    type: LogDb,
-    username: 'root',
-    hostname: 'localhost',
-    password: process.env.PASSWORD || 'PASSWORD not set',
-  },
-  uis: {
-    baseRoute: '/log/',
-    type: LogUi,
-    config: {
-      customMenu: [{
-        label: 'TEST',
-        uri: '/test/'
-      },{
-        label: 'GOOGLE',
-        uri: 'https://www.google.com',
-      }],
-    }
-  },
   statics: {
     baseRoute: '/assets',
     ressourcePath: `${__dirname}/assets`,
