@@ -34,26 +34,19 @@
   },
   "devDependencies": {
     "@all41-dev/db-tools": "^1.4.4",
-    "@all41-dev/server": "5.0.4",
+    "@all41-dev/server": "5.0.5",
     "@stylistic/eslint-plugin": "^5.7.1",
     "@types/amqplib": "^0.10.8",
     "@types/cors": "^2.8.19",
     "@types/cron": "^2.4.3",
     "@types/node": "25.1.0",
     "@types/semver": "^7.7.1",
-    "@typescript-eslint/eslint-plugin": "^8.54.0",
-    "@typescript-eslint/parser": "^8.54.0",
-    "cp-cli": "^1.0.2",
+    "cp-cli": "^2.0.0",
     "eslint": "^9.39.2",
     "express": "^5.2.1",
     "sequelize": "6.37.7",
     "sequelize-typescript": "^2.1.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.54.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
