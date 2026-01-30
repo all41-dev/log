@@ -40,6 +40,7 @@
     "@all41-dev/db-tools": "^1.4.4",
     "@all41-dev/server": "5.0.4",
     "@types/amqplib": "^0.10.8",
+    "@types/cors": "^2.8.19",
     "@types/cron": "^2.4.3",
     "@types/node": "25.1.0",
     "@types/semver": "^7.7.1",
