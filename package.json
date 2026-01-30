@@ -29,14 +29,13 @@
   "license": "ISC",
   "homepage": "https://github.com/all41-dev/log.api",
   "dependencies": {
-    "@stylistic/eslint-plugin": "^5.7.1",
     "rxjs": "^7.8.2",
-    "typescript-eslint": "^8.54.0",
     "zone.js": "^0.16.0"
   },
   "devDependencies": {
     "@all41-dev/db-tools": "^1.4.4",
     "@all41-dev/server": "5.0.4",
+    "@stylistic/eslint-plugin": "^5.7.1",
     "@types/amqplib": "^0.10.8",
     "@types/cors": "^2.8.19",
     "@types/cron": "^2.4.3",
@@ -49,7 +48,8 @@
     "express": "^5.2.1",
     "sequelize": "6.37.7",
     "sequelize-typescript": "^2.1.6",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0"
   },
   "config": {
     "commitizen": {
