@@ -13,7 +13,7 @@
     "start": "node ./dist/test.js",
     "lint": "eslint src/ --fix",
     "build": "tsc && npm run copy:scripts",
-    "preversion": "run-p test lint build",
+    "preversion": "npm run && npm run test && npm run lint && npm run build",
     "postversion": "git push && git push --tags && npm publish",
     "ncu:view": "ncu -x typescript,sequelize",
     "ncu:upd": "ncu -x typescript,sequelize -u",
