@@ -12,9 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "start": "node ./dist/test.js",
     "lint": "eslint src/ --fix",
-    "build": "run-p build:*",
-    "build-disabled:ui": "ng build --base-href /log/ && npm run copy:assets",
-    "build:app": "tsc && tsc --project src/ui/tsconfig.express.json && npm run copy:scripts",
+    "build": "tsc && npm run copy:scripts",
     "preversion": "run-p test lint build",
     "postversion": "git push && git push --tags && npm publish",
     "ncu:view": "ncu -x typescript,sequelize",
@@ -49,7 +47,6 @@
     "cp-cli": "^1.0.2",
     "eslint": "^9.39.2",
     "express": "^5.2.1",
-    "npm-run-all": "^4.1.5",
     "sequelize": "6.37.7",
     "sequelize-typescript": "^2.1.6",
     "typescript": "^5.9.3"
