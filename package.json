@@ -17,8 +17,8 @@
     "postversion": "git push && git push --tags && npm publish",
     "ncu:view": "ncu -x typescript,sequelize",
     "ncu:upd": "ncu -x typescript,sequelize -u",
-    "copy:assets": "cp-cli ./src/assets/ ./dist/assets/",
-    "copy:scripts": "cp-cli ./src/models/scripts ./dist/models/scripts/"
+    "copy:assets": "cpy ./src/assets/ ./dist/assets/",
+    "copy:scripts": "cpy ./src/models/scripts ./dist/models/scripts/"
   },
   "repository": {
     "type": "git",
