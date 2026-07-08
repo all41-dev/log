@@ -29,12 +29,6 @@ export default [
     files: ["test/**/*.{js,mjs,cjs,ts}"]
   },
   {
-    languageOptions: {
-      globals: globals.node
-    }
-  },
-  ...tseslint.configs.recommended,
-  {
     plugins: {
       '@stylistic/ts': stylisticJs
     },
