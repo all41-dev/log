@@ -1,4 +1,4 @@
-import { EntityRequest } from '@all41-dev/server';
+import { EntityRequest } from '@all41-dev/server.types';
 import { DestroyOptions, FindOptions, Op } from 'sequelize';
 import { Meta } from './meta';
 

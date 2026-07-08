@@ -3,7 +3,7 @@ import { LogEntry as WinstonLogEntry} from 'winston';
 import { LogEntry } from './models/log-entry';
 import { Meta } from './models/meta';
 import util from 'util';
-import { IWsOptions } from '@all41-dev/server';
+import { IWsOptions } from '@all41-dev/server.types';
 
 export interface IWebSocketLogTransportOptions extends Transport.TransportStreamOptions {
   wsOptions: IWsOptions;
